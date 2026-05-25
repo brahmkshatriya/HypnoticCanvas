@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.mikepenz.hypnoticcanvas"
-version = "1.0.0"
+version = "1.0.1"
 
 kotlin {
     jvm()
