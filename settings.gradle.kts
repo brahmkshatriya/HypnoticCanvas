@@ -19,5 +19,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "multiplatform-library-template"
 include(":lib")
-include(":desktopSample")
-include(":webSample")
+include(":examples:desktop")
+include(":examples:web")

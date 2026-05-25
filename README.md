@@ -23,3 +23,11 @@ import com.mikepenz.hypnoticcanvas.shaders.GlossyGradients
 //...
 Box(Modifier.fillMaxSize().shaderBackground(GlossyGradients))
 ```
+You can also take a look at the [examples](/examples) module for more examples.
+
+Custom shaders can be created by implementing the [Shader](/lib/src/commonMain/kotlin/shaders/Shader.kt) interface.
+
+Example shaders included in the library are:
+- [MeshGradient](/lib/src/commonMain/kotlin/shaders/MeshGradient.kt)
+- [GlossyGradients](/lib/src/commonMain/kotlin/shaders/GlossyGradients.kt)
+- [MesmerizingLens](/lib/src/commonMain/kotlin/shaders/MesmerizingLens.kt)
