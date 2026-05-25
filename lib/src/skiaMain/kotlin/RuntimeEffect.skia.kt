@@ -1,8 +1,10 @@
 package com.mikepenz.hypnoticcanvas
 
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Shader as ComposeShader
 import androidx.compose.ui.graphics.ShaderBrush
 import androidx.compose.ui.graphics.asComposeShader
+import androidx.compose.ui.graphics.skiaShader
 import com.mikepenz.hypnoticcanvas.shaders.Shader
 import org.jetbrains.skia.RuntimeShaderBuilder
 
@@ -28,6 +30,10 @@ class NonAndroidRuntimeEffect(shader: Shader) : RuntimeEffect {
 
     override fun setFloatUniform(name: String, values: FloatArray) {
         compositeShaderBuilder.uniform(name, values)
+    }
+
+    override fun setShaderUniform(name: String, shader: ComposeShader) {
+        compositeShaderBuilder.child(name, shader.skiaShader)
     }
 
     override fun update(shader: Shader, time: Float, width: Float, height: Float) {

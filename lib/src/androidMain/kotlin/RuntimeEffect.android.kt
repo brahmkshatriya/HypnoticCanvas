@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shader as ComposeShader
 import androidx.compose.ui.graphics.ShaderBrush
 import com.mikepenz.hypnoticcanvas.shaders.Shader
 
@@ -43,6 +44,10 @@ internal class AndroidRuntimeEffect(shader: Shader) : RuntimeEffect {
 
     override fun setFloatUniform(name: String, values: FloatArray) {
         compositeRuntimeEffect.setFloatUniform(name, values)
+    }
+
+    override fun setShaderUniform(name: String, shader: ComposeShader) {
+        compositeRuntimeEffect.setInputShader(name, shader)
     }
 
     override fun update(shader: Shader, time: Float, width: Float, height: Float) {

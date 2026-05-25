@@ -27,6 +27,15 @@ You can also take a look at the [examples](/examples) module for more examples.
 
 Custom shaders can be created by implementing the [Shader](/lib/src/commonMain/kotlin/shaders/Shader.kt) interface.
 
+Texture-style uniforms are supported too. In AGSL/SkSL, declare them as `uniform shader` and sample them with `.eval(...)`.
+
+```kotlin
+override fun applyUniforms(runtimeEffect: RuntimeEffect, time: Float, width: Float, height: Float) {
+	super.applyUniforms(runtimeEffect, time, width, height)
+	runtimeEffect.setShaderUniform("uWaveform", ImageShader(waveformBitmap))
+}
+```
+
 Example shaders included in the library are:
 - [MeshGradient](/lib/src/commonMain/kotlin/shaders/MeshGradient.kt)
 - [GlossyGradients](/lib/src/commonMain/kotlin/shaders/GlossyGradients.kt)
