@@ -47,7 +47,7 @@ kotlin {
 mavenPublishing {
     publishToMavenCentral()
     signAllPublications()
-    coordinates(group.toString(), "lib", version.toString())
+    coordinates("dev.brahmkshatriya.hypnoticcanvas", "lib", version.toString())
     pom {
         name = "HypnoticCanvas"
         description = "A shader modifier for Compose Multiplatform / Jetpack Compose"
