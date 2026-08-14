@@ -12,6 +12,11 @@ plugins {
 dependencyResolutionManagement {
     @Suppress("UnstableApiUsage")
     repositories {
+        mavenLocal {
+            content {
+                includeGroup("com.materialkolor")
+            }
+        }
         google()
         mavenCentral()
     }
@@ -19,5 +24,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "multiplatform-library-template"
 include(":lib")
-include(":examples:desktop")
+include(":examples:jvm")
+include(":examples:multiplatform")
 include(":examples:web")

@@ -25,6 +25,19 @@ Box(Modifier.fillMaxSize().shaderBackground(GlossyGradients))
 ```
 You can also take a look at the [examples](/examples) module for more examples.
 
+The `examples:multiplatform` application uses one shared UI on JVM, WebAssembly, and Linux x64.
+Run the platform launchers with:
+
+```shell
+./gradlew :examples:multiplatform:jvmRun
+./gradlew :examples:multiplatform:wasmJsBrowserDevelopmentRun
+./gradlew :examples:multiplatform:runDebugExecutableLinuxX64
+```
+
+JVM and WebAssembly resolve the official Compose plugin version declared as `compose` in the
+version catalog. Linux x64 additionally applies the Compose Native overlay declared as
+`compose-native` and uses the SDL3 native window host.
+
 Custom shaders can be created by implementing the [Shader](/lib/src/commonMain/kotlin/shaders/Shader.kt) interface.
 
 Texture-style uniforms are supported too. In AGSL/SkSL, declare them as `uniform shader` and sample them with `.eval(...)`.

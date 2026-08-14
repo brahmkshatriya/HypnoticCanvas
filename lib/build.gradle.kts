@@ -1,5 +1,7 @@
-@file:OptIn(ExperimentalWasmDsl::class)
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class, ExperimentalWasmDsl::class)
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.plugin.KotlinHierarchyTemplate
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -7,19 +9,29 @@ plugins {
     alias(libs.plugins.vanniktech.mavenPublish)
 
     alias(libs.plugins.composeMultiplatform)
+    alias(libs.plugins.composeNative)
     alias(libs.plugins.composeCompiler)
 }
 
 group = "com.mikepenz.hypnoticcanvas"
-version = "1.0.1"
+version = "1.0.2"
 
 kotlin {
-    jvm()
+    applyHierarchyTemplate(KotlinHierarchyTemplate.default) {
+        common {
+            group("skia") {
+                withJvm()
+                withJs()
+                withWasmJs()
+                withNative()
+            }
+        }
+    }
+
     android {
         namespace = "com.mikepenz.hypnoticcanvas"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
     }
-    iosArm64()
     wasmJs {
         outputModuleName = "library"
         browser {
@@ -30,23 +42,36 @@ kotlin {
         binaries.executable()
     }
     js { nodejs() }
+    iosArm64()
+    jvm()
+    desktopNative()
 
     sourceSets {
         commonMain.dependencies {
             api(libs.compose.ui)
             api(libs.compose.foundation)
         }
-        val skiaMain by creating { dependsOn(commonMain.get()) }
-        iosArm64Main { dependsOn(skiaMain) }
-        jsMain { dependsOn(skiaMain) }
-        wasmJsMain { dependsOn(skiaMain) }
-        jvmMain { dependsOn(skiaMain) }
+        named("skiaMain") {
+            dependencies {
+                implementation(libs.skiko)
+            }
+        }
+        desktopNativeMain.dependencies {
+            api(libs.compose.native.ui)
+            api(libs.compose.native.foundation)
+            implementation(libs.skiko.native)
+        }
     }
 }
 
 mavenPublishing {
     publishToMavenCentral()
-    signAllPublications()
+    if (
+        providers.gradleProperty("signingInMemoryKey").isPresent ||
+            providers.gradleProperty("signing.secretKeyRingFile").isPresent
+    ) {
+        signAllPublications()
+    }
     coordinates("dev.brahmkshatriya.hypnoticcanvas", "lib", version.toString())
     pom {
         name = "HypnoticCanvas"

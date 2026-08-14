@@ -1,13 +1,14 @@
 [versions]
 agp = "9.2.1"
-kotlin = "2.3.21"
+kotlin = "2.4.0"
 android-compileSdk = "37"
 vanniktechMavenPublish = "0.36.0"
-compose = "1.12.0-alpha01"
-
-[libraries]
-compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
-compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
+compose = "1.12.0-rc01"
+compose-material3 = "1.12.0-alpha03"
+compose-native = "1.12.10-alpha06"
+material-kolor = "5.0.0"
+skiko = "0.150.1"
+skiko-native = "0.151.4"
 
 [plugins]
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
@@ -16,4 +17,17 @@ vanniktech-mavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "
 
 kotlinJVM = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose" }
+composeNative = { id = "dev.brahmkshatriya.compose", version.ref = "compose-native" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+[libraries]
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
+compose-desktop-linux-x64 = { module = "org.jetbrains.compose.desktop:desktop-jvm-linux-x64", version.ref = "compose" }
+compose-native-desktop = { module = "dev.brahmkshatriya.compose.desktop:desktop-native", version.ref = "compose-native" }
+compose-native-ui = { module = "dev.brahmkshatriya.compose.ui:ui", version.ref = "compose-native" }
+compose-native-foundation = { module = "dev.brahmkshatriya.compose.foundation:foundation", version.ref = "compose-native" }
+material-kolor = { module = "com.materialkolor:material-kolor", version.ref = "material-kolor" }
+skiko = { module = "org.jetbrains.skiko:skiko", version.ref = "skiko" }
+skiko-native = { module = "dev.brahmkshatriya.skiko:skiko", version.ref = "skiko-native" }

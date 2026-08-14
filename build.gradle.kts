@@ -5,5 +5,6 @@ plugins {
 
     alias(libs.plugins.kotlinJVM) apply false
     alias(libs.plugins.composeMultiplatform) apply false
+    alias(libs.plugins.composeNative) apply false
     alias(libs.plugins.composeCompiler) apply false
 }
