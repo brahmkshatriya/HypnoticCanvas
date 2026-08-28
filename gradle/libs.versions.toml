@@ -5,10 +5,10 @@ android-compileSdk = "37"
 vanniktechMavenPublish = "0.36.0"
 compose = "1.12.0-rc01"
 compose-material3 = "1.12.0-alpha03"
-compose-native = "1.12.10-alpha06"
-material-kolor = "5.0.0"
+compose-native = "1.12.10-alpha12"
 skiko = "0.150.1"
-skiko-native = "0.151.4"
+skiko-native = "0.151.5"
+material-kolor = "5.0.1"
 
 [plugins]
 android-kotlin-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
@@ -28,6 +28,6 @@ compose-desktop-linux-x64 = { module = "org.jetbrains.compose.desktop:desktop-jv
 compose-native-desktop = { module = "dev.brahmkshatriya.compose.desktop:desktop-native", version.ref = "compose-native" }
 compose-native-ui = { module = "dev.brahmkshatriya.compose.ui:ui", version.ref = "compose-native" }
 compose-native-foundation = { module = "dev.brahmkshatriya.compose.foundation:foundation", version.ref = "compose-native" }
-material-kolor = { module = "com.materialkolor:material-kolor", version.ref = "material-kolor" }
 skiko = { module = "org.jetbrains.skiko:skiko", version.ref = "skiko" }
 skiko-native = { module = "dev.brahmkshatriya.skiko:skiko", version.ref = "skiko-native" }
+material-kolor = { module = "com.materialkolor:material-kolor", version.ref = "material-kolor" }
