@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "com.mikepenz.hypnoticcanvas"
-version = "1.0.5"
+version = "1.0.6"
 
 kotlin {
     applyHierarchyTemplate(KotlinHierarchyTemplate.default) {
@@ -56,6 +56,21 @@ kotlin {
         named("skiaMain") {
             dependencies {
                 implementation(libs.skiko)
+            }
+        }
+        listOf(
+            "jvmMain",
+            "jsMain",
+            "wasmJsMain",
+            "iosArm64Main",
+            "linuxX64Main",
+            "linuxArm64Main",
+            "mingwX64Main",
+            "macosX64Main",
+            "macosArm64Main",
+        ).forEach { sourceSetName ->
+            named(sourceSetName) {
+                kotlin.srcDir("src/skiaTargetMain/kotlin")
             }
         }
         desktopNativeMain.dependencies {
