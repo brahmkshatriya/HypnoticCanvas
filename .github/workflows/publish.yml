@@ -2,8 +2,9 @@ name: Publish
 
 on:
   workflow_dispatch:
-  release:
-    types: [released, prereleased]
+  push:
+    tags:
+      - '*'
 
 concurrency:
   group: publish-${{ github.ref }}
@@ -32,6 +33,20 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
+      - name: Verify tag matches library version
+        if: github.event_name == 'push'
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          library_version="$(sed -n 's/^version = "\([^"]*\)"/\1/p' lib/build.gradle.kts | head -n1)"
+          test -n "$library_version"
+          if [[ "$RELEASE_TAG" != "$library_version" ]]; then
+            echo "Tag '$RELEASE_TAG' does not match lib version '$library_version'." >&2
+            exit 1
+          fi
+
       - name: Restore Gradle properties and signing key
         shell: bash
         env:
@@ -53,7 +68,7 @@ jobs:
           printf '\nsigning.secretKeyRingFile=%s\n' "$keyring" >> "$properties_file"
           chmod 600 "$properties_file" "$keyring"
 
-      - name: Publish Android, JVM, JS, Wasm, iOS, Linux, and Windows
+      - name: Publish Android, JVM, JS, Wasm, iOS, macOS, Linux, and Windows
         run: |
           ./gradlew \
             :lib:publishToMavenCentral \

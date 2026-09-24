@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "com.mikepenz.hypnoticcanvas"
-version = "1.0.3"
+version = "1.0.4"
 
 kotlin {
     applyHierarchyTemplate(KotlinHierarchyTemplate.default) {
