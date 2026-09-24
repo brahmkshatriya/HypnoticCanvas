@@ -68,10 +68,10 @@ jobs:
           printf '\nsigning.secretKeyRingFile=%s\n' "$keyring" >> "$properties_file"
           chmod 600 "$properties_file" "$keyring"
 
-      - name: Publish Android, JVM, JS, Wasm, iOS, macOS, Linux, and Windows
+      - name: Publish and release Android, JVM, JS, Wasm, iOS, macOS, Linux, and Windows
         run: |
           ./gradlew \
-            :lib:publishToMavenCentral \
+            :lib:publishAndReleaseToMavenCentral \
             --no-daemon \
             --stacktrace \
             --no-configuration-cache

@@ -14,7 +14,7 @@ plugins {
 }
 
 group = "com.mikepenz.hypnoticcanvas"
-version = "1.0.6"
+version = "1.0.7"
 
 kotlin {
     applyHierarchyTemplate(KotlinHierarchyTemplate.default) {
@@ -48,8 +48,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            api(libs.compose.runtime)
-            api(libs.compose.runtime.annotation)
             api(libs.compose.ui)
             api(libs.compose.foundation)
         }
